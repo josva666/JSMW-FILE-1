@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #faf6ee;
+    color: #23150b;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono-tabular {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom subtle honey shimmer for buttons/dividers */
+@keyframes honeyFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 0.85;
+  }
+}
+
+.animate-honey-float {
+  animation: honeyFloat 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  .animate-honey-float,
+  .transition-transform,
+  .transition-all {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}

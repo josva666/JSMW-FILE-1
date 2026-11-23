@@ -1,0 +1,250 @@
+import fs from 'fs';
+import path from 'path';
+import type { StoreData } from '../src/types/store.ts';
+
+const DATA_DIR = path.resolve(process.cwd(), 'data');
+const STORE_FILE = path.join(DATA_DIR, 'store.json');
+export const UPLOADS_DIR = path.join(DATA_DIR, 'uploads');
+
+export const SINGLE_JAR_HERO_IMG =
+  '/assets/aistudio/file_0000000030348211900441cf76cf4cab_42e90767.png';
+export const FOUR_JARS_LINEUP_IMG =
+  '/assets/aistudio/file_00000000c54882118f7dd7067a109425_0960e621.png';
+
+function createDefaultProducts() {
+  return [
+    {
+      id: 'jsmw-1kg',
+      name: 'JSMW Pure Sirumalai Wild Honey — 1 kg',
+      category: '1 kg Jar',
+      description:
+        'Full 1 kg family jar of raw Sirumalai wild forest honey gathered around Dindigul, Tamil Nadu. Minimally filtered without artificial heating. Price and stock are editable in the Administration Dashboard.',
+      originNote: 'Net Weight: 1 kg · Sourced in Sirumalai Hills, Dindigul, Tamil Nadu',
+      imageUrl: SINGLE_JAR_HERO_IMG,
+      videoUrl: '',
+      featured: true,
+      active: true,
+      variants: [{ id: 'v-1kg', weight: '1 kg', priceInr: 1600, stock: 30 }],
+    },
+    {
+      id: 'jsmw-500g',
+      name: 'JSMW Pure Sirumalai Wild Honey — 1/2 kg',
+      category: '1/2 kg Jar',
+      description:
+        '500 g (1/2 kg) jar of natural Sirumalai wild honey with rich golden amber clarity and wildflower aroma. Price and stock can be updated anytime in the Administration Dashboard.',
+      originNote: 'Net Weight: 500 g (1/2 kg) · Sirumalai Hills, Dindigul, Tamil Nadu',
+      imageUrl: FOUR_JARS_LINEUP_IMG,
+      videoUrl: '',
+      featured: true,
+      active: true,
+      variants: [{ id: 'v-500g', weight: '500 g', priceInr: 850, stock: 35 }],
+    },
+    {
+      id: 'jsmw-250g',
+      name: 'JSMW Pure Sirumalai Wild Honey — 1/4 kg',
+      category: '1/4 kg Jar',
+      description:
+        '250 g (1/4 kg) jar ideal for daily household use and gifting, packed with raw wild honey from the Sirumalai forest ranges. Price and stock are editable in the Administration Dashboard.',
+      originNote: 'Net Weight: 250 g (1/4 kg) · Sirumalai Hills, Dindigul, Tamil Nadu',
+      imageUrl: FOUR_JARS_LINEUP_IMG,
+      videoUrl: '',
+      featured: true,
+      active: true,
+      variants: [{ id: 'v-250g', weight: '250 g', priceInr: 450, stock: 40 }],
+    },
+    {
+      id: 'jsmw-100g',
+      name: 'JSMW Pure Sirumalai Wild Honey — 100 g',
+      category: '100 g Jar',
+      description:
+        'Compact 100 g tasting and travel jar of raw Sirumalai wild honey from Dindigul, sealed with the official JSMW label. Price and stock are editable in the Administration Dashboard.',
+      originNote: 'Net Weight: 100 g · Sirumalai Hills, Dindigul, Tamil Nadu',
+      imageUrl: FOUR_JARS_LINEUP_IMG,
+      videoUrl: '',
+      featured: true,
+      active: true,
+      variants: [{ id: 'v-100g', weight: '100 g', priceInr: 220, stock: 50 }],
+    },
+  ];
+}
+
+function createInitialStore(): StoreData {
+  return {
+    products: createDefaultProducts(),
+    company: {
+      brandCode: 'JSMW',
+      companyName: 'JSMW – Jose Sirumalai Wild Honey',
+      tagline: 'Pure Nature. Golden Goodness.',
+      history:
+        'Based in Dindigul, Tamil Nadu, India, JSMW – Jose Sirumalai Wild Honey brings natural wild honey harvested around the Sirumalai hills directly to households across India and international destinations. Official founding dates and company milestones can be added by the administrator.',
+      brandStory:
+        'Our brand narrative focuses on transparent, minimally handled wild honey from Dindigul, preserving the natural colour, viscosity, and seasonal floral character of each harvest. Administrators can update this story anytime from the dashboard.',
+      sourcingInfo:
+        'Honey is sourced from traditional forest and hill-margin foraging zones in and around Sirumalai, Dindigul district, Tamil Nadu, with seasonal floral variation reflected in every batch.',
+      mission:
+        'To offer genuine, minimally processed natural wild honey from Dindigul with honest product documentation, transparent sourcing, and reliable domestic and international fulfilment.',
+      vision:
+        'To represent Sirumalai wild honey from Tamil Nadu on the international stage through integrity, traceability, and unhurried artisanal care.',
+      values: [
+        'Honest Provenance from Dindigul, Tamil Nadu',
+        'Minimal Handling Without Artificial Additives',
+        'Transparent Documentation & Customer Care',
+        'Responsible Domestic & Worldwide Fulfilment',
+      ],
+    },
+    owner: {
+      name: 'Jose',
+      roleTitle: 'Founder, JSMW – Jose Sirumalai Wild Honey',
+      photoUrl: '',
+      education:
+        'Founder academic qualifications and certifications can be added here from the Administration Dashboard.',
+      biography:
+        'Founder of JSMW – Jose Sirumalai Wild Honey in Dindigul, Tamil Nadu, India. Full founder biography, educational background, and personal portrait can be uploaded and edited directly in the Administration Dashboard.',
+      professionalBackground:
+        'Details of professional background and beekeeping experience can be added here by the founder or authorized administrator.',
+      companyJourney:
+        'Information on how Jose started JSMW in Dindigul and expanded delivery across India and international markets can be customized in the Administration Dashboard.',
+      vision:
+        'To connect families across India and worldwide with honest, pure wild honey from the Sirumalai region without exaggerated claims.',
+    },
+    coFounder: {
+      name: 'Co-Founder / Manager',
+      roleTitle: 'Co-Founder / Operations Manager, JSMW – Jose Sirumalai Wild Honey',
+      photoUrl: '',
+      education:
+        'Co-Founder / Manager qualifications can be updated here from the Administration Dashboard.',
+      biography:
+        'Dedicated leadership slot for the Co-Founder or Operations Manager overseeing Sirumalai harvest sourcing, batch hygiene, customer care, and worldwide shipping. Name, portrait, education, and biography can be edited anytime in Admin.',
+      responsibilities:
+        'Day-to-day operations, quality packaging supervision, wholesale coordination, and domestic & international dispatch.',
+    },
+    certificates: [],
+    reviews: [],
+    contact: {
+      company: 'JSMW – Jose Sirumalai Wild Honey',
+      location: 'Dindigul, Tamil Nadu, India',
+      mobile: '9976819258',
+      whatsapp: '9976819258',
+      email: '',
+      instagram: '',
+      youtube: '',
+      fullAddress: 'Dindigul, Tamil Nadu, India',
+      mapLat: 10.2286,
+      mapLng: 77.9942,
+      mapLabel: 'JSMW – Jose Sirumalai Wild Honey, Dindigul, Tamil Nadu, India',
+      mapZoom: 11,
+    },
+    shipping: {
+      currencies: [
+        { code: 'INR', symbol: '₹', rateFromInr: 1, label: 'Indian Rupee (INR)' },
+        { code: 'USD', symbol: '$', rateFromInr: 0.012, label: 'US Dollar (USD)' },
+        { code: 'EUR', symbol: '€', rateFromInr: 0.011, label: 'Euro (EUR)' },
+        { code: 'GBP', symbol: '£', rateFromInr: 0.0095, label: 'British Pound (GBP)' },
+        { code: 'AED', symbol: 'د.إ', rateFromInr: 0.044, label: 'UAE Dirham (AED)' },
+      ],
+      zones: [
+        {
+          id: 'zone-tn-local',
+          name: 'Tamil Nadu & South India (Domestic)',
+          regionType: 'domestic',
+          countries: 'India (Tamil Nadu, Kerala, Karnataka, Andhra Pradesh, Telangana)',
+          baseChargeInr: 80,
+          perKgInr: 40,
+          freeAboveInr: 2000,
+          estimatedTransit: 'Configurable courier timeline (editable in Admin)',
+          active: true,
+        },
+        {
+          id: 'zone-india-rest',
+          name: 'Rest of India (Domestic)',
+          regionType: 'domestic',
+          countries: 'All other Indian states & Union Territories',
+          baseChargeInr: 140,
+          perKgInr: 70,
+          freeAboveInr: 3000,
+          estimatedTransit: 'Configurable domestic air/surface courier (editable in Admin)',
+          active: true,
+        },
+        {
+          id: 'zone-intl-me-asia',
+          name: 'Middle East & Asia-Pacific (International)',
+          regionType: 'international',
+          countries: 'UAE, Singapore, Malaysia, Oman, Qatar, Saudi Arabia, Japan, Australia',
+          baseChargeInr: 1850,
+          perKgInr: 650,
+          freeAboveInr: null,
+          estimatedTransit: 'International air parcel (subject to destination customs)',
+          active: true,
+        },
+        {
+          id: 'zone-intl-eu-na',
+          name: 'Europe, UK & North America (International)',
+          regionType: 'international',
+          countries: 'United Kingdom, European Union, United States, Canada',
+          baseChargeInr: 2450,
+          perKgInr: 850,
+          freeAboveInr: null,
+          estimatedTransit: 'International express export (subject to destination customs)',
+          active: true,
+        },
+      ],
+    },
+    orders: [],
+    inquiries: [],
+  };
+}
+
+export function ensureStorage(): void {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+  if (!fs.existsSync(UPLOADS_DIR)) {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+  }
+  if (!fs.existsSync(STORE_FILE)) {
+    const initial = createInitialStore();
+    fs.writeFileSync(STORE_FILE, JSON.stringify(initial, null, 2), 'utf8');
+  }
+}
+
+export function readStore(): StoreData {
+  ensureStorage();
+  const raw = fs.readFileSync(STORE_FILE, 'utf8');
+  const parsed = JSON.parse(raw) as StoreData;
+  const defaults = createInitialStore();
+  let migrated = false;
+
+  // Migrate legacy 3-product defaults to the 4 single-weight jar products (1kg, 500g, 250g, 100g)
+  const legacyIds = new Set(['jsmw-wild-forest', 'jsmw-multiflora-raw', 'jsmw-comb-reserve']);
+  const isLegacyDefaults =
+    parsed.products.length === 3 && parsed.products.every((p) => legacyIds.has(p.id));
+  if (isLegacyDefaults) {
+    parsed.products = createDefaultProducts();
+    migrated = true;
+  }
+
+  if (parsed.owner.education === undefined) {
+    parsed.owner = { ...defaults.owner, ...parsed.owner };
+    migrated = true;
+  }
+  if (!parsed.coFounder) {
+    parsed.coFounder = defaults.coFounder;
+    migrated = true;
+  }
+  if (parsed.contact.instagram === undefined || parsed.contact.youtube === undefined) {
+    parsed.contact = { ...defaults.contact, ...parsed.contact };
+    migrated = true;
+  }
+
+  if (migrated) {
+    writeStore(parsed);
+  }
+  return parsed;
+}
+
+export function writeStore(data: StoreData): void {
+  ensureStorage();
+  const tempFile = `${STORE_FILE}.tmp`;
+  fs.writeFileSync(tempFile, JSON.stringify(data, null, 2), 'utf8');
+  fs.renameSync(tempFile, STORE_FILE);
+}
